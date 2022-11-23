@@ -5,18 +5,10 @@ import { auth } from "../firebase";
 
 type AppContextInterface = {
   currentUser: User | null;
-  spinner: boolean;
-  setSpinner: (arg0: boolean) => void;
 };
-
-function dummySpinner() {
-  return;
-}
 
 export const AuthContext = createContext<AppContextInterface>({
   currentUser: null,
-  spinner: false,
-  setSpinner: dummySpinner,
 });
 
 export const AuthContextProvider = ({
@@ -24,23 +16,23 @@ export const AuthContextProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
+  //context for loading
+  const [loading, setLoading] = useState<boolean>(true);
   const [currentUser, SetCurrentUser] = useState<User | null>(null);
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
       SetCurrentUser(user);
+      setLoading(false);
     });
     return () => {
       unsub();
     };
   }, []);
 
-  //context for loading spinner
-  const [spinner, setSpinner] = useState<boolean>(false);
-
   return (
-    <AuthContext.Provider value={{ currentUser, setSpinner, spinner }}>
-      {children}
+    <AuthContext.Provider value={{ currentUser }}>
+      {!loading && children}
     </AuthContext.Provider>
   );
 };

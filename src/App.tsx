@@ -1,17 +1,17 @@
-import React, { useContext, useMemo } from "react";
+import React, { useContext } from "react";
 import "./App.css";
 import Home from "./screens/Home";
 import Login from "./screens/Login";
 import Register from "./screens/Register";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthContext } from "./context/AuthContext";
-import Loading from "./screens/Loading";
+import LoadSpinner from "./components/LoadSpinner";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
   const ProtectedRoute = ({ children }: { children: any }) => {
     if (!currentUser) {
-      return <Loading isLoading />;
+      return <Login />;
     }
     return children;
   };
@@ -22,9 +22,14 @@ function App() {
           <Route path="/">
             <Route
               index
-              element={<Loading isLoading={currentUser ? true : false} />}
+              element={
+                <ProtectedRoute>
+                  <Home />
+                </ProtectedRoute>
+              }
             />
             <Route path="login" element={<Login />} />
+            <Route path="loading" element={<LoadSpinner />} />
             <Route path="register" element={<Register />} />
           </Route>
         </Routes>

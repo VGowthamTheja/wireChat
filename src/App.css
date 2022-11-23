@@ -26,6 +26,9 @@ body {
 .registerOverlay {
   width: 100%;
   margin: 15% auto;
+  display: flex;
+  align-content: center;
+  justify-content: center;
 }
 
 .registerWrapper {
@@ -86,9 +89,6 @@ body {
 
 .home>.container {
   display: flex;
-  /* align-items: center; */
-  /* justify-content: center; */
-  /* border: 1px solid white; */
   width: 80%;
   height: 80vh;
   margin: 35px auto;
@@ -190,10 +190,6 @@ body {
   right: 10px;
   color: #fff;
   pointer-events: none;
-}
-
-.chats>.userChat {
-  /* line-height: 0.6; */
 }
 
 .chats>.userChat>.userChatInfo {
@@ -383,4 +379,53 @@ body {
   color: #fff;
   border-radius: 5px 0px 5px 5px;
   max-width: max-content;
+}
+
+.loaderSlate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 45vh auto;
+  gap: 4px;
+}
+
+.bar {
+  width: 0.5em;
+  height: 2em;
+  background-color: #5916df;
+}
+
+.bar1 {
+  animation: blob 1s linear infinite;
+  animation-delay: -0.5s;
+}
+
+.bar2 {
+  animation: blob 1s linear infinite;
+  animation-delay: -0.44s;
+}
+
+.bar3 {
+  animation: blob 1s linear infinite;
+  animation-delay: -0.38s;
+}
+
+.bar4 {
+  animation: blob 1s linear infinite;
+  animation-delay: -0.25s;
+}
+
+.bar5 {
+  animation: blob 1s linear infinite;
+  animation-delay: -0.1s;
+}
+
+@keyframes blob {
+  0% {
+    transform: scaleY(2);
+  }
+
+  100% {
+    transform: scaleY(1);
+  }
 }

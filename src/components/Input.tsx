@@ -34,6 +34,9 @@ const Input = (props: Props) => {
   }, [text, img]);
 
   const handleSend = async () => {
+    if (!img || !text) {
+      return;
+    }
     if (img) {
       const storageRef = ref(storage, uuid());
 
