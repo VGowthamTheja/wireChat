@@ -22,6 +22,8 @@ const Register = (props: Props) => {
     /* @ts-expect-error auto-src: non-strict-conversion*/
     const photoFile = event.target[3].files[0];
 
+    navigate("/loading");
+
     try {
       const response = await createUserWithEmailAndPassword(
         auth,
