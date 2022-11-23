@@ -4,6 +4,7 @@ import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import Messages from "./Messages";
 import Input from "./Input";
+import noMsg from "../img/noMsg.webp";
 import { ChatContext } from "../context/ChatContext";
 
 type Props = {
@@ -12,31 +13,46 @@ type Props = {
 
 const Chat = ({ noSelection }: Props) => {
   const { data } = useContext(ChatContext);
-  return (
-    <div className="chat">
-      <div className="chatInfo">
-        <div
-          className="userOnChat"
-          style={{ display: "flex", alignItems: "center", gap: "10px" }}
-        >
-          <img
-            src={data.user?.photoURL}
-            alt=""
-            width="30px"
-            style={{ borderRadius: "50%" }}
-          />
-          <span>{data.user?.displayName}</span>
+
+  const chatPageRendering = () => {
+    if (noSelection) {
+      return (
+        <div className="noContent">
+          <span>
+            <img src={noMsg} alt="" width={'60px'}/>
+          </span>
+          <p>No conversations has selected!!</p>
         </div>
-        <div className="chatIcons">
-          <VideocamIcon />
-          <PersonAddIcon />
-          <MoreHorizIcon />
-        </div>
-      </div>
-      <Messages noSelection={noSelection} />
-      <Input />
-    </div>
-  );
+      );
+    } else {
+      return (
+        <>
+          <div className="chatInfo">
+            <div
+              className="userOnChat"
+              style={{ display: "flex", alignItems: "center", gap: "10px" }}
+            >
+              <img
+                src={data.user?.photoURL}
+                alt=""
+                width="30px"
+                style={{ borderRadius: "50%" }}
+              />
+              <span>{data.user?.displayName}</span>
+            </div>
+            <div className="chatIcons">
+              <VideocamIcon />
+              <PersonAddIcon />
+              <MoreHorizIcon />
+            </div>
+          </div>
+          <Messages noSelection={noSelection} />
+          <Input />
+        </>
+      );
+    }
+  };
+  return <div className="chat">{chatPageRendering()}</div>;
 };
 
 export default Chat;
