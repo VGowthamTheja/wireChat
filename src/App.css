@@ -94,6 +94,7 @@ body {
   margin: 35px auto;
   border-radius: 5px;
   overflow: hidden;
+  z-index: 200;
 }
 
 .sidebar {
@@ -131,6 +132,7 @@ body {
   border-radius: 50%;
   background-color: #fff;
   object-fit: cover;
+  margin: 0px 10px 0px 0px;
 }
 
 .btnLogout {
@@ -355,8 +357,28 @@ body {
 
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 600px) {
   .app-logo {
+    display: none;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .sidebar.slide {
+    height: 80vh;
+    position: absolute;
+    display: inline-block;
+    z-index: 10;
+  }
+
+  .container {
+    width: 100%;
+    height: 100vh;
+  }
+
+  .chatIcons {
     display: none;
   }
 
@@ -437,5 +459,39 @@ body {
   align-items: center;
   justify-content: center;
   background-color: #e0d1ff;
-  color: #805ec5;
+  color: burgbar;
+}
+
+.burger {
+  cursor: pointer;
+  height: 4em;
+  width: 4em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.burgbar {
+  width: 1.5em;
+  height: 0.2em;
+  background-color: #e0d1ff;
+  border-radius: 2px;
+  transition: all 0.4s ease-in-out;
+  pointer-events: none;
+}
+
+.twist .burgbar {
+  opacity: 0;
+}
+
+.twist .burgbar:first-child {
+  transform: translate(0, 9.5px) rotate(-45deg);
+  opacity: 1;
+}
+
+.twist .burgbar:last-child {
+  transform: translate(0, -9.5px) rotate(45deg);
+  opacity: 1;
 }

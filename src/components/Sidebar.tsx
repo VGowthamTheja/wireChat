@@ -9,7 +9,7 @@ type Props = {
 
 const Sidebar = ({ setNoSelection }: Props) => {
   return (
-    <div className="sidebar">
+    <div className="sidebar" id="sidebar">
       <Navbar />
       <Search setNoSelection={setNoSelection} />
       <Chats setNoSelection={setNoSelection} />

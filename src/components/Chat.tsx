@@ -6,6 +6,7 @@ import Messages from "./Messages";
 import Input from "./Input";
 import noMsg from "../img/noMsg.webp";
 import { ChatContext } from "../context/ChatContext";
+import MenuHamburger from "./MenuHamburger";
 
 type Props = {
   noSelection: boolean;
@@ -19,7 +20,7 @@ const Chat = ({ noSelection }: Props) => {
       return (
         <div className="noContent">
           <span>
-            <img src={noMsg} alt="" width={'60px'}/>
+            <img src={noMsg} alt="" width={"60px"} />
           </span>
           <p>No conversations has selected!!</p>
         </div>
@@ -40,11 +41,12 @@ const Chat = ({ noSelection }: Props) => {
               />
               <span>{data.user?.displayName}</span>
             </div>
-            <div className="chatIcons">
+            {/* <div className="chatIcons">
               <VideocamIcon />
               <PersonAddIcon />
               <MoreHorizIcon />
-            </div>
+            </div> */}
+            <MenuHamburger />
           </div>
           <Messages noSelection={noSelection} />
           <Input />

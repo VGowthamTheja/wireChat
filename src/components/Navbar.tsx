@@ -10,7 +10,7 @@ const Navbar = (props: Props) => {
   const { currentUser } = useContext(AuthContext);
   return (
     <div className="navbar">
-      <span className="app-logo">Super Chat</span>
+      <span className="app-logo">Nimbus Chat</span>
       <div className="user">
         {/* @ts-expect-error auto-src: non-strict-conversion*/}
         <img className="user-img" src={currentUser?.photoURL} alt="" />
