@@ -34,7 +34,7 @@ const Input = (props: Props) => {
   }, [text, img]);
 
   const handleSend = async () => {
-    if (!img || !text) {
+    if (!img && !text) {
       return;
     }
     if (img) {
